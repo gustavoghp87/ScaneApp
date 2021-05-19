@@ -1,0 +1,1 @@
+Scaffold-DBContext "Server=localhost; Database=ScaneApp; User=ghp2; Password=ghpghpghpghp;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
