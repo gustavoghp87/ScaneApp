@@ -24,8 +24,9 @@ namespace WS_ScaneApp
             {
                 options.AddPolicy(MyCors, builder =>
                 {
-                    builder.WithHeaders("*");
-                    builder.WithOrigins("http://localhost:4200");
+                    builder.WithHeaders("*");                                 // post methods
+                    builder.WithOrigins("http://localhost:4200");             // just get methods
+                    builder.WithMethods("*");                                 // put and delete methods
                 });
             });
             services.AddControllers();

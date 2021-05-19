@@ -1,13 +1,17 @@
-<h1 mat-dialog-title> New Client </h1>
+<h1 mat-dialog-title> {{ client ? 'Edit Client' : 'New Client' }} </h1>
 
 <div mat-dialog-content>
     <mat-form-field>
         <mat-label> Name </mat-label>
-        <input matInput />
+        <input matInput [(ngModel)]="name" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label> Phone </mat-label>
+        <input matInput [(ngModel)]="phone" />
     </mat-form-field>
 </div>
 
 <div mat-dialog-actions>
-    <button mat-raised-button (click)="CloseDialog()" color="warning"> Cancel </button>
-    <button mat-raised-button (click)="AddClient()" color="primary"> Save </button>
+    <button mat-raised-button (click)="CloseDialog()" color="basic"> Cancel </button>
+    <button mat-raised-button (click)="client ? EditClient() : AddClient()" color="primary"> Save </button>
 </div>
