@@ -1,0 +1,25 @@
+<div>
+    <button mat-raised-button color="primary" (click)="OpenDialog()"> Add New Client </button>
+</div>
+
+
+
+<div style="margin-top: 40px;">
+    <table mat-table [dataSource]="lstClients" class="mat-elevation-z4">
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> # </th>
+            <th mat-cell *matCellDef="let client"> {{ client.id }} </th>
+        </ng-container>
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <th mat-cell *matCellDef="let client"> {{ client.name }} </th>
+        </ng-container>
+        <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef> Phone </th>
+            <th mat-cell *matCellDef="let client"> {{ client.phone }} </th>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="clientColumns">  </tr>
+        <tr mat-row *matRowDef="let row; columns:clientColumns">  <tr>
+    </table>
+</div>
