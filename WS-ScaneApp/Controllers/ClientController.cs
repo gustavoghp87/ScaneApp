@@ -14,7 +14,7 @@ namespace WS_ScaneApp.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            ClientResponse response = new();
+            ProjectResponse response = new();
             try
             {
                 using (ScaneAppContext db = new())
@@ -34,7 +34,7 @@ namespace WS_ScaneApp.Controllers
         [HttpGet("{id}")]
         public IActionResult GetOne(int id)
         {
-            ClientResponse response = new();
+            ProjectResponse response = new();
             try
             {
                 using (ScaneAppContext db = new())
@@ -58,7 +58,7 @@ namespace WS_ScaneApp.Controllers
         [HttpPost]
         public IActionResult Add(ClientRequest request)
         {
-            ClientResponse response = new();
+            ProjectResponse response = new();
             try
             {
                 using (ScaneAppContext db = new())
@@ -82,7 +82,7 @@ namespace WS_ScaneApp.Controllers
         [HttpPut]
         public IActionResult Update(ClientRequest request)
         {
-            ClientResponse response = new();
+            ProjectResponse response = new();
             try
             {
                 using (ScaneAppContext db = new())
@@ -108,7 +108,7 @@ namespace WS_ScaneApp.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            ClientResponse response = new();
+            ProjectResponse response = new();
             try
             {
                 using (ScaneAppContext db = new())

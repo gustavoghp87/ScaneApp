@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using WS_ScaneApp.Services;
 
 namespace WS_ScaneApp
 {
@@ -34,6 +35,7 @@ namespace WS_ScaneApp
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WS_ScaneApp", Version = "v1" });
             });
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

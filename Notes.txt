@@ -1,1 +1,7 @@
 Scaffold-DBContext "Server=localhost; Database=ScaneApp; User=ghp2; Password=ghpghpghpghp;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+
+Eligiendo algunas tablas en vez de todas:
+Scaffold-DBContext "Server=localhost; Database=ScaneApp; User=ghp2; Password=ghpghpghpghp;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Tables "Users" (-Force si falla)
+
+Rehacer modelos y context después de cambiar la DB:	(ver que no hay nada en error)
+Scaffold-DBContext "Server=localhost; Database=ScaneApp; User=ghp2; Password=ghpghpghpghp;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Force
