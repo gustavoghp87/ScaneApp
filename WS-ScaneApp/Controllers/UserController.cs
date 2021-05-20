@@ -20,7 +20,7 @@ namespace WS_ScaneApp.Controllers
         }
 
         // POST api/<UserController>
-        [HttpPost]
+        [HttpPost("login")]
         public IActionResult Authenticate([FromBody] AuthRequest model)
         {
             ProjectResponse response = new();
