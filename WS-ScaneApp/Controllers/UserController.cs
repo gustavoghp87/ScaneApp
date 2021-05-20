@@ -12,7 +12,7 @@ namespace WS_ScaneApp.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private IUserService _userService;
+        private readonly IUserService _userService;
         
         public UserController(IUserService userService)
         {
@@ -32,7 +32,7 @@ namespace WS_ScaneApp.Controllers
             }
             response.Success = 1;
             response.Data = userResponse;
-            return Ok(model);
+            return Ok(response);
         }
 
 

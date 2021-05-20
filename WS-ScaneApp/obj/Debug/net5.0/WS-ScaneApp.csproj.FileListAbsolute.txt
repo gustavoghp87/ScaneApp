@@ -83,7 +83,6 @@ C:\Users\g\Documents\github\DOTNET\ScaneApp\WS-ScaneApp\bin\Debug\net5.0\Microso
 C:\Users\g\Documents\github\DOTNET\ScaneApp\WS-ScaneApp\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\g\Documents\github\DOTNET\ScaneApp\WS-ScaneApp\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\g\Documents\github\DOTNET\ScaneApp\WS-ScaneApp\bin\Debug\net5.0\Microsoft.OpenApi.dll
-C:\Users\g\Documents\github\DOTNET\ScaneApp\WS-ScaneApp\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\g\Documents\github\DOTNET\ScaneApp\WS-ScaneApp\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\g\Documents\github\DOTNET\ScaneApp\WS-ScaneApp\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\g\Documents\github\DOTNET\ScaneApp\WS-ScaneApp\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -120,3 +119,4 @@ C:\Users\g\Documents\github\DOTNET\ScaneApp\WS-ScaneApp\obj\Debug\net5.0\WS_Scan
 C:\Users\g\Documents\github\DOTNET\ScaneApp\WS-ScaneApp\obj\Debug\net5.0\ref\WS_ScaneApp.dll
 C:\Users\g\Documents\github\DOTNET\ScaneApp\WS-ScaneApp\obj\Debug\net5.0\WS_ScaneApp.pdb
 C:\Users\g\Documents\github\DOTNET\ScaneApp\WS-ScaneApp\obj\Debug\net5.0\WS-ScaneApp.genruntimeconfig.cache
+C:\Users\g\Documents\github\DOTNET\ScaneApp\WS-ScaneApp\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

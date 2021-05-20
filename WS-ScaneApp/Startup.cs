@@ -1,9 +1,13 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Text;
+using WS_ScaneApp.Models.Common;
 using WS_ScaneApp.Services;
 
 namespace WS_ScaneApp
@@ -26,7 +30,8 @@ namespace WS_ScaneApp
                 options.AddPolicy(MyCors, builder =>
                 {
                     builder.WithHeaders("*");                                 // post methods
-                    builder.WithOrigins("http://localhost:4200");             // just get methods
+                    //builder.WithOrigins("http://localhost:4200");             // just get methods
+                    builder.WithOrigins("*");             // just get methods
                     builder.WithMethods("*");                                 // put and delete methods
                 });
             });
@@ -36,6 +41,32 @@ namespace WS_ScaneApp
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WS_ScaneApp", Version = "v1" });
             });
             services.AddScoped<IUserService, UserService>();
+
+            // JWT
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<ProjectAppSettings>(appSettingsSection);
+
+            var appSettings = appSettingsSection.Get<ProjectAppSettings>();
+            var key = Encoding.ASCII.GetBytes(appSettings.SecretString);
+
+            services
+                .AddAuthentication(x =>
+                {
+                    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(x =>
+                {
+                    x.RequireHttpsMetadata = false;
+                    x.SaveToken = true;
+                    x.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(key),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +81,7 @@ namespace WS_ScaneApp
             }
             app.UseHttpsRedirection();
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
