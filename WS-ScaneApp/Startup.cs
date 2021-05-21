@@ -15,6 +15,7 @@ namespace WS_ScaneApp
     public class Startup
     {
         private readonly string MyCors = "MyCors";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -41,14 +42,13 @@ namespace WS_ScaneApp
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WS_ScaneApp", Version = "v1" });
             });
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ISaleService, SaleService>();
 
             // JWT
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<ProjectAppSettings>(appSettingsSection);
-
             var appSettings = appSettingsSection.Get<ProjectAppSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.SecretString);
-
             services
                 .AddAuthentication(x =>
                 {

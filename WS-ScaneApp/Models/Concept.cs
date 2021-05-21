@@ -12,8 +12,9 @@ namespace WS_ScaneApp.Models
         public long SaleId { get; set; }
         public string SaleName { get; set; }
         public decimal SalePrice { get; set; }
+        public int Quantity { get; set; }
+        public long Total { get; set; }
 
-        public virtual Product Product { get; set; }
         public virtual Sale Sale { get; set; }
     }
 }

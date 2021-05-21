@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using WS_ScaneApp.Models.ProjectRequests;
 using WS_ScaneApp.Models.ProjectResponses;
@@ -8,55 +9,53 @@ namespace WS_ScaneApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class SaleController : ControllerBase
     {
-        private readonly IUserService _userService;
-        
-        public UserController(IUserService userService)
+        private readonly ISaleService _saleService;
+
+        public SaleController(ISaleService saleService)
         {
-            _userService = userService;
+            _saleService = saleService;
         }
 
-        // POST api/<UserController>
-        [HttpPost("login")]
-        public IActionResult Authenticate([FromBody] AuthRequest model)
+        // POST api/<SaleController>
+        [HttpPost]
+        public IActionResult Post([FromBody] SaleRequest model)
         {
             ProjectResponse response = new();
-            var userResponse = _userService.Auth(model);
-            if (userResponse == null) {
-                response.Success = 0;
-                response.ErrorMessage = "User or Password wrong";
-                return BadRequest(response);
+            try
+            {
+                _saleService.AddSale(model);
+                response.Success = 1;
             }
-            response.Success = 1;
-            response.Data = userResponse;
+            catch (Exception)
+            {
+                response.Success = 0;
+            }
             return Ok(response);
         }
 
-
-
-        // GET: api/<UserController>
+        // GET: api/<SaleController>
         [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/<UserController>/5
+        // GET api/<SaleController>/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-
-        // PUT api/<UserController>/5
+        // PUT api/<SaleController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/<UserController>/5
+        // DELETE api/<SaleController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

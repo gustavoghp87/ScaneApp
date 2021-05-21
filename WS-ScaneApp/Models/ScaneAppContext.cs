@@ -57,12 +57,6 @@ namespace WS_ScaneApp.Models
 
                 entity.Property(e => e.SalePrice).HasColumnType("decimal(18, 2)");
 
-                entity.HasOne(d => d.Product)
-                    .WithMany(p => p.Concepts)
-                    .HasForeignKey(d => d.ProductId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Concepts_Products");
-
                 entity.HasOne(d => d.Sale)
                     .WithMany(p => p.Concepts)
                     .HasForeignKey(d => d.SaleId)
@@ -82,6 +76,8 @@ namespace WS_ScaneApp.Models
 
             modelBuilder.Entity<Sale>(entity =>
             {
+                entity.Property(e => e.Date).HasColumnType("date");
+
                 entity.Property(e => e.Total).HasColumnType("decimal(22, 2)");
 
                 entity.HasOne(d => d.Client)
