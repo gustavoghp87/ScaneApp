@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 #nullable disable
 
@@ -57,6 +55,8 @@ namespace WS_ScaneApp.Models
 
                 entity.Property(e => e.SalePrice).HasColumnType("decimal(18, 2)");
 
+                entity.Property(e => e.Total).HasColumnType("decimal(20, 2)");
+
                 entity.HasOne(d => d.Sale)
                     .WithMany(p => p.Concepts)
                     .HasForeignKey(d => d.SaleId)
@@ -76,7 +76,7 @@ namespace WS_ScaneApp.Models
 
             modelBuilder.Entity<Sale>(entity =>
             {
-                entity.Property(e => e.Date).HasColumnType("date");
+                entity.Property(e => e.Date).HasColumnType("datetime");
 
                 entity.Property(e => e.Total).HasColumnType("decimal(22, 2)");
 

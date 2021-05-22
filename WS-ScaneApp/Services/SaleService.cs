@@ -16,30 +16,41 @@ namespace WS_ScaneApp.Services
                     try
                     {
                         var newSale = new Sale();
-                        newSale.Total = model.Concepts.Sum(c => c.Quantity * c.SalePrice);
                         newSale.ClientId = model.ClientId;
+                        var client = context.Clients.Where(x => x.Id == model.ClientId).FirstOrDefault();
+                        newSale.Client = client;
+                        newSale.Total = model.Concepts.Sum(c => c.Quantity * c.SalePrice);
                         newSale.Date = DateTime.Now;
+                        context.Sales.Add(newSale);
+                        context.SaveChanges();
+
+                        var newSaleId = context.Sales
+                            .Where(x => x.Date == newSale.Date && x.ClientId == newSale.ClientId).FirstOrDefault().Id + 1;
+
+                        // context.SaveChanges();
                         foreach (var modelConcept in model.Concepts)
                         {
                             var newConcept = new Concept
                             {
-                                Quantity = modelConcept.Quantity,
+                                SaleId = newSaleId,
+                                Sale = newSale,
                                 ProductId = modelConcept.ProductId,
-                                SalePrice = modelConcept.SalePrice,
                                 SaleName = modelConcept.SaleName,
-                                Total = modelConcept.Total
+                                SalePrice = modelConcept.SalePrice,
+                                Quantity = modelConcept.Quantity,
+                                Total = (long)(modelConcept.Quantity * modelConcept.SalePrice)
                             };
                             context.Concepts.Add(newConcept);
-                            context.SaveChanges();
+                            // context.SaveChanges();
                         }
-                        context.Sales.Add(newSale);
                         context.SaveChanges();
                         transaction.Commit();
-                        throw new Exception("Error in Add Sale");
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
+                        Console.WriteLine(e.Message);
                         transaction.Rollback();
+                        throw new Exception("Error in Add Sale");
                     }
                 }
             }
